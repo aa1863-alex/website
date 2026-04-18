@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>網頁工具箱</title>
+  <style>
+    /* 整體頁面樣式 */
+    body {
+      font-family: "Microsoft JhengHei", Arial, sans-serif;
+      background-color: #f0f4f8;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    /* 主容器 */
+    .container {
+      background: white;
+      border-radius: 12px;
+      padding: 40px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      max-width: 480px;
+      width: 90%;
+      text-align: center;
+    }
+
+    /* 標題 */
+    h1 {
+      color: #2c3e50;
+      margin-bottom: 8px;
+      font-size: 1.6rem;
+    }
+
+    /* 副標題 */
+    p.subtitle {
+      color: #7f8c8d;
+      margin-bottom: 32px;
+      font-size: 0.95rem;
+    }
+
+    /* 工具卡片清單 */
+    .tool-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    /* 每個工具的連結卡片 */
+    .tool-card {
+      display: block;
+      background: #3498db;
+      color: white;
+      text-decoration: none;
+      padding: 18px 24px;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: bold;
+      transition: background 0.2s, transform 0.1s;
+    }
+
+    /* 滑鼠移過時的效果 */
+    .tool-card:hover {
+      background: #2980b9;
+      transform: translateY(-2px);
+    }
+
+    /* 第二個按鈕用不同顏色區分 */
+    .tool-card:nth-child(2) {
+      background: #27ae60;
+    }
+
+    .tool-card:nth-child(2):hover {
+      background: #219a52;
+    }
+
+    /* 第三個按鈕顏色 */
+    .tool-card:nth-child(3) {
+      background: #e67e22;
+    }
+
+    .tool-card:nth-child(3):hover {
+      background: #ca6f1e;
+    }
+
+    /* 頁尾文字 */
+    .footer {
+      margin-top: 32px;
+      font-size: 0.8rem;
+      color: #bdc3c7;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>網頁工具箱</h1>
+    <p class="subtitle">請選擇要使用的工具</p>
+
+    <div class="tool-list">
+      <!-- 工具一：短網址與QRcode產生器 -->
+      <a class="tool-card" href="短網址%26QRcode.html">
+        🔗 短網址 &amp; QRcode 產生器
+      </a>
+
+      <!-- 工具二：試算表轉換工具 -->
+      <a class="tool-card" href="試算表轉換13版.html">
+        📊 試算表轉換工具
+      </a>
+
+      <!-- 工具三：金額轉換 -->
+      <a class="tool-card" href="金額轉換.html">
+        💰 金額轉換
+      </a>
+    </div>
+
+    <div class="footer">aa1863-alex.github.io/webtool</div>
+  </div>
+</body>
+</html>
