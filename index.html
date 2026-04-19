@@ -3,119 +3,439 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>網頁工具箱</title>
+  <title>基隆市科技積木創意競賽說明</title>
   <style>
-    /* 整體頁面樣式 */
+    /* 全域重置與字型 */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      font-family: "Microsoft JhengHei", Arial, sans-serif;
-      background-color: #f0f4f8;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      margin: 0;
+      font-family: "Microsoft JhengHei", "PingFang TC", Arial, sans-serif;
+      background: #f0f4f8;
+      color: #2c3e50;
+      line-height: 1.8;
     }
 
-    /* 主容器 */
+    /* ── Hero 區塊 ── */
+    .hero {
+      background: linear-gradient(135deg, #1a3a6b 0%, #2980b9 60%, #27ae60 100%);
+      color: white;
+      text-align: center;
+      padding: 60px 20px 50px;
+    }
+    .hero .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.2);
+      border: 1px solid rgba(255,255,255,0.4);
+      border-radius: 20px;
+      padding: 4px 16px;
+      font-size: 0.85rem;
+      margin-bottom: 18px;
+      letter-spacing: 1px;
+    }
+    .hero h1 {
+      font-size: 2rem;
+      font-weight: bold;
+      margin-bottom: 12px;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+    .hero p {
+      font-size: 1rem;
+      opacity: 0.9;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    /* ── 主內容容器 ── */
     .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 40px 20px 60px;
+    }
+
+    /* ── 各章節標題 ── */
+    .section-title {
+      font-size: 1.25rem;
+      font-weight: bold;
+      color: #1a3a6b;
+      border-left: 5px solid #2980b9;
+      padding-left: 14px;
+      margin: 40px 0 20px;
+    }
+
+    /* ── 簡介文字區 ── */
+    .intro-text {
+      background: white;
+      border-radius: 10px;
+      padding: 24px 28px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+      font-size: 0.97rem;
+      margin-bottom: 8px;
+    }
+
+    /* ── 競賽類別卡片 ── */
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+      margin-bottom: 8px;
+    }
+    .category-card {
       background: white;
       border-radius: 12px;
-      padding: 40px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-      max-width: 480px;
-      width: 90%;
-      text-align: center;
+      padding: 24px 22px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      border-top: 5px solid #2980b9;
+      transition: transform 0.2s;
     }
-
-    /* 標題 */
-    h1 {
-      color: #2c3e50;
-      margin-bottom: 8px;
-      font-size: 1.6rem;
-    }
-
-    /* 副標題 */
-    p.subtitle {
-      color: #7f8c8d;
-      margin-bottom: 32px;
-      font-size: 0.95rem;
-    }
-
-    /* 工具卡片清單 */
-    .tool-list {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    /* 每個工具的連結卡片 */
-    .tool-card {
-      display: block;
-      background: #3498db;
-      color: white;
-      text-decoration: none;
-      padding: 18px 24px;
-      border-radius: 8px;
-      font-size: 1rem;
+    .category-card:nth-child(2) { border-top-color: #27ae60; }
+    .category-card:nth-child(3) { border-top-color: #e67e22; }
+    .category-card:hover { transform: translateY(-4px); }
+    .category-card .card-icon { font-size: 2rem; margin-bottom: 10px; }
+    .category-card h3 {
+      font-size: 1.05rem;
       font-weight: bold;
-      transition: background 0.2s, transform 0.1s;
+      margin-bottom: 8px;
+      color: #1a3a6b;
+    }
+    .category-card p { font-size: 0.88rem; color: #555; }
+    .category-card .tag {
+      display: inline-block;
+      background: #eaf3fb;
+      color: #2980b9;
+      border-radius: 12px;
+      padding: 2px 10px;
+      font-size: 0.78rem;
+      margin: 4px 4px 8px 0;
+    }
+    .category-card:nth-child(2) .tag { background: #eafaf1; color: #27ae60; }
+    .category-card:nth-child(3) .tag { background: #fef9e7; color: #e67e22; }
+
+    /* ── 規則補充說明 ── */
+    .rule-box {
+      background: #eaf3fb;
+      border-left: 4px solid #2980b9;
+      border-radius: 6px;
+      padding: 14px 20px;
+      font-size: 0.9rem;
+      margin-top: 4px;
+      color: #2c3e50;
     }
 
-    /* 滑鼠移過時的效果 */
-    .tool-card:hover {
+    /* ── 年度分頁 ── */
+    .year-tabs {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    .year-tab {
+      background: white;
+      border: 2px solid #2980b9;
+      color: #2980b9;
+      border-radius: 8px;
+      padding: 6px 20px;
+      font-size: 0.9rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .year-tab.active, .year-tab:hover {
       background: #2980b9;
-      transform: translateY(-2px);
+      color: white;
     }
 
-    /* 第二個按鈕用不同顏色區分 */
-    .tool-card:nth-child(2) {
-      background: #27ae60;
+    /* ── 通用表格 ── */
+    .table-wrapper {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+    }
+    thead th {
+      background: #1a3a6b;
+      color: white;
+      padding: 12px 16px;
+      text-align: left;
+      font-weight: bold;
+    }
+    tbody tr:nth-child(even) { background: #f7fafd; }
+    tbody td {
+      padding: 12px 16px;
+      border-bottom: 1px solid #e8ecf0;
+      vertical-align: top;
+    }
+    tbody tr:last-child td { border-bottom: none; }
+    .amount { font-weight: bold; color: #c0392b; }
+
+    /* ── 統計卡片（報名人數） ── */
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+    .stat-card {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+      text-align: center;
+      padding: 20px 10px 16px;
+    }
+    .stat-card .num {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: #2980b9;
+    }
+    .stat-card .label {
+      font-size: 0.82rem;
+      color: #7f8c8d;
+      margin-top: 4px;
     }
 
-    .tool-card:nth-child(2):hover {
-      background: #219a52;
+    /* ── 補充說明框 ── */
+    .note-box {
+      background: #fdf6ec;
+      border-left: 4px solid #e67e22;
+      border-radius: 6px;
+      padding: 14px 20px;
+      font-size: 0.88rem;
+      color: #5d4037;
+      margin-top: 4px;
     }
 
-    /* 第三個按鈕顏色 */
-    .tool-card:nth-child(3) {
-      background: #e67e22;
+    /* ── 頁尾 ── */
+    footer {
+      text-align: center;
+      padding: 24px;
+      font-size: 0.82rem;
+      color: #aab3bb;
+      border-top: 1px solid #e0e6ed;
+      margin-top: 20px;
     }
 
-    .tool-card:nth-child(3):hover {
-      background: #ca6f1e;
-    }
-
-    /* 頁尾文字 */
-    .footer {
-      margin-top: 32px;
-      font-size: 0.8rem;
-      color: #bdc3c7;
+    /* ── 響應式調整 ── */
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 1.4rem; }
+      thead th, tbody td { padding: 10px 10px; font-size: 0.82rem; }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>網頁工具箱</h1>
-    <p class="subtitle">請選擇要使用的工具</p>
 
-    <div class="tool-list">
-      <!-- 工具一：短網址與QRcode產生器 -->
-      <a class="tool-card" href="短網址%26QRcode.html">
-        🔗 短網址 &amp; QRcode 產生器
-      </a>
+<!-- ████ Hero ████ -->
+<div class="hero">
+  <div class="badge">基隆市政府教育處</div>
+  <h1>🧱 基隆市科技積木創意競賽</h1>
+  <p>結合 STEAM 五大面向，提供學生透過積木組裝、運算思維應用及藝術設計發揮創意，落實十二年國教教育理念。</p>
+</div>
 
-      <!-- 工具二：試算表轉換工具 -->
-      <a class="tool-card" href="試算表轉換13版.html">
-        📊 試算表轉換工具
-      </a>
+<div class="container">
 
-      <!-- 工具三：金額轉換 -->
-      <a class="tool-card" href="金額轉換.html">
-        💰 金額轉換
-      </a>
+  <!-- ████ 一、競賽簡介 ████ -->
+  <div class="section-title">一、競賽簡介</div>
+
+  <div class="intro-text">
+    <p>基隆市科技積木創意競賽（114 年稱「科技積木創意競賽」，115 年更名為「基優盃科技積木創意競賽」）係由<strong>基隆市政府主辦、市教育處教育網路中心承辦</strong>之年度資訊科技競賽。</p>
+    <p style="margin-top:12px;">競賽結合科技積木與 <strong>STEAM</strong>（科學、技術、工程、藝術、數學）五大面向，提供本市公私立國中小及高中職學生，透過積木組裝、實作體驗、運算思維應用及藝術設計等方式發揮創意與巧思，在實作中學習，落實十二年國教創意發展及適性揚才的教育理念，並提供學生展現跨域整合能力的競技舞台。</p>
+  </div>
+
+  <div class="section-title" style="margin-top:28px;">競賽類別</div>
+
+  <div class="category-grid">
+
+    <!-- 機關整合賽 -->
+    <div class="category-card">
+      <div class="card-icon">⚙️</div>
+      <div class="tag">高中組</div><div class="tag">國中組</div><div class="tag">國小組</div>
+      <h3>機關整合賽（GM）</h3>
+      <p>以積木設計並組裝多段連鎖機關，觸發完成指定任務，由評審依設計完整度、穩定性與創意性評分。</p>
     </div>
 
-    <div class="footer">aa1863-alex.github.io/webtool</div>
+    <!-- 機器人任務賽 -->
+    <div class="category-card">
+      <div class="card-icon">🤖</div>
+      <div class="tag">國中組</div><div class="tag">國小組</div>
+      <h3>機器人任務賽（R4M）</h3>
+      <p>以積木搭配馬達及電子元件設計機器人，於計時競賽中依任務完成程度計分。</p>
+    </div>
+
+    <!-- 積木創客盃 -->
+    <div class="category-card">
+      <div class="card-icon">💡</div>
+      <div class="tag">科學小創客</div><div class="tag">程式小創客</div>
+      <h3>積木創客盃（GMJr.）</h3>
+      <p>含科學小創客（主題機關設計）及程式小創客（積木結合程式控制）兩個項目，每隊以 2 人為單位參賽。</p>
+    </div>
+
+  </div><!-- /category-grid -->
+
+  <div class="rule-box">
+    📋 <strong>賽規說明：</strong>競賽規則依當年度<em>世界機關王大賽臺灣賽</em>規則辦理；評審由主辦單位聘請學者專家組成委員會。各參賽學校領隊教師均須出席<strong>競賽說明研習暨領隊會議</strong>，確保比賽公平進行。
   </div>
+
+  <!-- ████ 二、競賽相關經費 ████ -->
+  <div class="section-title">二、競賽相關經費</div>
+
+  <!-- 114 年度 -->
+  <p style="font-weight:bold; margin-bottom:10px; color:#555;">▶ 114 年度</p>
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th style="width:25%">經費類別</th>
+          <th style="width:20%">金額</th>
+          <th>說明</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>競賽辦理經費</td>
+          <td class="amount">445,600 元</td>
+          <td>含評審費 75,000 元、交通費 44,400 元、工作人員費 30,400 元、場地佈置費 71,300 元、印刷設計費 79,500 元、誤餐費 27,000 元、獎金 70,000 元、雜支 20,000 元</td>
+        </tr>
+        <tr>
+          <td>學校材料費補助</td>
+          <td class="amount">200,000 元</td>
+          <td>補助 20 所參賽學校競賽材料費；1 隊補助 5,000 元、2 隊補助 9,000 元、3 隊（含）以上補助 12,000 元</td>
+        </tr>
+        <tr>
+          <td>研習辦理經費</td>
+          <td class="amount">約 6,000 元</td>
+          <td>辦理競賽說明研習 3 場（積木創客盃、機關整合賽、機器人任務賽各 1 場）；另辦理 R4M 工作坊（外聘講師 3 小時，鐘點費 6,000 元）</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 115 年度 -->
+  <p style="font-weight:bold; margin-bottom:10px; color:#555; margin-top:20px;">▶ 115 年度</p>
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th style="width:25%">經費類別</th>
+          <th style="width:20%">金額</th>
+          <th>說明</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>競賽辦理經費</td>
+          <td class="amount">180,000 元</td>
+          <td>含評審費 25,000 元、交通費 14,800 元、住宿費 17,500 元、工作人員費 15,680 元、補充保費 858 元、場地佈置費 55,950 元、比賽用品 15,000 元、誤餐費 27,000 元、雜支 8,212 元</td>
+        </tr>
+        <tr>
+          <td>學校材料費補助</td>
+          <td>未另立補助</td>
+          <td>本年度未另立材料費補助計畫；改以競賽辦理經費統一支應場地及設備費用</td>
+        </tr>
+        <tr>
+          <td>研習辦理經費</td>
+          <td>未列獨立預算</td>
+          <td>辦理競賽說明暨領隊會議研習，費用納入整體競賽辦理經費，未另列獨立研習預算</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ████ 三、競賽報名狀況 ████ -->
+  <div class="section-title">三、競賽報名狀況</div>
+
+  <!-- 114 年度報名 -->
+  <p style="font-weight:bold; margin-bottom:12px; color:#555;">▶ 114 年度（競賽日期：114 年 5 月 24 日，地點：基隆市教師研習中心）</p>
+
+  <div class="stat-grid">
+    <div class="stat-card"><div class="num">23</div><div class="label">參賽學校（所）</div></div>
+    <div class="stat-card"><div class="num">67</div><div class="label">參賽隊伍（隊）</div></div>
+    <div class="stat-card"><div class="num">44</div><div class="label">指導教師（人）</div></div>
+    <div class="stat-card"><div class="num">190</div><div class="label">參賽學生（人）</div></div>
+    <div class="stat-card"><div class="num" style="color:#27ae60;">234</div><div class="label">師生合計（人）</div></div>
+  </div>
+
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>競賽項目</th>
+          <th>組別</th>
+          <th>隊數</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td rowspan="3">機關整合賽（GM）</td>
+          <td>高中組</td><td>2 隊</td>
+        </tr>
+        <tr><td>國中組</td><td>3 隊</td></tr>
+        <tr><td>國小組</td><td>7 隊（小計 12 隊）</td></tr>
+        <tr>
+          <td rowspan="2">機器人任務賽（R4M）</td>
+          <td>國中組</td><td>6 隊</td>
+        </tr>
+        <tr><td>國小組</td><td>4 隊（小計 10 隊）</td></tr>
+        <tr>
+          <td rowspan="2">積木創客盃（GMJr.）</td>
+          <td>科學小創客</td><td>22 隊</td>
+        </tr>
+        <tr><td>程式小創客</td><td>23 隊（小計 45 隊）</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 115 年度報名 -->
+  <p style="font-weight:bold; margin-bottom:12px; color:#555; margin-top:24px;">▶ 115 年度（競賽日期：115 年 3 月 21 日，地點：基隆市長興國小）</p>
+
+  <div class="stat-grid">
+    <div class="stat-card"><div class="num">20</div><div class="label">參賽學校（所）</div></div>
+    <div class="stat-card"><div class="num">56</div><div class="label">參賽隊伍（隊）</div></div>
+    <div class="stat-card"><div class="num">35</div><div class="label">指導教師（人）</div></div>
+    <div class="stat-card"><div class="num">146</div><div class="label">參賽學生（人）</div></div>
+    <div class="stat-card"><div class="num" style="color:#27ae60;">181</div><div class="label">師生合計（人）</div></div>
+  </div>
+
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>競賽項目</th>
+          <th>組別</th>
+          <th>隊數</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td rowspan="3">機關整合賽（GM）</td>
+          <td>高中組</td><td>1 隊</td>
+        </tr>
+        <tr><td>國中組</td><td>5 隊</td></tr>
+        <tr><td>國小組</td><td>4 隊（小計 10 隊）</td></tr>
+        <tr>
+          <td rowspan="2">機器人任務賽（R4M）</td>
+          <td>國中組</td><td>5 隊</td>
+        </tr>
+        <tr><td>國小組</td><td>7 隊（小計 12 隊）</td></tr>
+        <tr>
+          <td rowspan="2">積木創客盃（GMJr.）</td>
+          <td>科學小創客</td><td>15 隊</td>
+        </tr>
+        <tr><td>程式小創客</td><td>19 隊（小計 34 隊）</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="note-box">
+    ※ <strong>補充說明：</strong>114 年共 67 隊、115 年共 56 隊，整體規模略有縮減。主因係 115 年將各組隊伍上限適度調降（科學小創客 22 隊→15 隊、程式小創客 23 隊→20 隊），以提升競賽品質與評審深度。兩年度師生參與人次合計超過 <strong>415 人次</strong>。
+  </div>
+
+</div><!-- /container -->
+
+<footer>
+  基隆市政府教育處教育網路中心 &nbsp;｜&nbsp; 科技積木創意競賽專頁
+</footer>
+
 </body>
 </html>
